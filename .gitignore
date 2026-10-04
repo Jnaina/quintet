@@ -1,0 +1,13 @@
+# build output and signed apps
+build/
+build-dev/
+dist/
+logs/
+*.xcuserdata
+xcuserdata/
+DerivedData/
+# python / macOS noise
+__pycache__/
+.DS_Store
+# local copies of the original specification and word list (not published)
+docs/
