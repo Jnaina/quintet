@@ -122,6 +122,7 @@ final class GameModel: ObservableObject {
     }
 
     func startNewGame() {
+        record()                                 // idempotent: a finished game is always counted before it is replaced
         toastTask?.cancel()
         var recent = defaults.stringArray(forKey: "recent.v1") ?? []
         var pick = Words.list.randomElement() ?? "CRANE"
@@ -185,8 +186,10 @@ final class GameModel: ObservableObject {
         guesses.append(word); evals.append(ev); current = ""
         if ev.allSatisfy({ $0 == .correct }) { status = .won; completedAt = Date() }
         else if guesses.count == Self.maxGuesses { status = .lost; completedAt = Date() }
+        record()                                 // count the result now: the reveal below takes seconds and can be interrupted
         save()                                   // state is saved after every accepted guess
-        Task { await reveal(row: row) }
+        let id = gameID
+        Task { await reveal(row: row, gameID: id) }
     }
 
     private func reject(_ message: String) {
@@ -197,8 +200,9 @@ final class GameModel: ObservableObject {
 
     // MARK: reveal and completion
 
-    private func reveal(row: Int) async {
+    private func reveal(row: Int, gameID id: String) async {
         isRevealing = true
+        defer { if gameID == id { isRevealing = false } }
         for i in 0..<5 {
             // the next tile starts when the previous one is 60% through its flip
             try? await Task.sleep(nanoseconds: reduceMotion ? 80_000_000 : UInt64(FlipTiming.stagger * 1_000_000_000))
@@ -215,17 +219,14 @@ final class GameModel: ObservableObject {
             let messages = ["Exceptional", "Magnificent", "Impressive", "Splendid", "Great", "Close one"]
             showToast(messages[max(0, min(5, guesses.count - 1))], duration: 2.4)
             try? await Task.sleep(nanoseconds: reduceMotion ? 700_000_000 : 1_600_000_000)
-            record()
-            showStats = true
+            if gameID == id { showStats = true }
         case .lost:
             showToast(answer, duration: 4)
             try? await Task.sleep(nanoseconds: 2_200_000_000)
-            record()
-            showStats = true
+            if gameID == id { showStats = true }
         case .playing:
             break
         }
-        isRevealing = false
     }
 
     /// Idempotent: a finished game can update the statistics only once.
