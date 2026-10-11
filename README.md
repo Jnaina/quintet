@@ -1,7 +1,7 @@
 # Quintet
 
 A five-letter word-deduction game for iPhone (iOS 17+), built from a developer specification for a daily five-letter word puzzle (the specification itself is not included here).
-Not a daily puzzle: start a new game any time; each game picks a fresh random word from `Resources/words.txt` (3,555 words, used for both answers and valid guesses).
+Not a daily puzzle: start a new game any time; each game picks a fresh random word from `Resources/words.txt` (3,555 words, answers only; valid guesses come from `Resources/guesses.txt`, ENABLE + Wordle allowed + answers).
 
 ## Features (per the spec)
 Six guesses, two-pass duplicate-safe evaluation, strict mode (chosen before the first guess), keyboard letter states that only get stronger,
@@ -28,7 +28,7 @@ The game is silent (the flip sound was tried and removed at the user's request).
     xcrun devicectl device install app --device <UDID> build-dev/Build/Products/Release-iphoneos/Quintet.app
 
 Launch arguments for the simulator: `-demo` (plays sample guesses), `-demowin` (plays a winning game).
-Free-account note: the bundle ID `com.jnaina.galaga88` is reused (App ID quota); on the phone trust the developer under Settings > General > VPN & Device Management.
+Free-account note: the bundle ID `com.jnaina.quintet` is reused (App ID quota); on the phone trust the developer under Settings > General > VPN & Device Management.
 
 ## Signing
 The Apple team ID is intentionally blank. To build for a device, either set `DEVELOPMENT_TEAM` in `project.yml` (then run `xcodegen generate`) or append `DEVELOPMENT_TEAM=<your team id>` to the `xcodebuild` command line. Simulator builds need no signing (`CODE_SIGNING_ALLOWED=NO`).

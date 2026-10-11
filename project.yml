@@ -30,7 +30,7 @@ targets:
         ITSAppUsesNonExemptEncryption: false
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.jnaina.galaga88
+        PRODUCT_BUNDLE_IDENTIFIER: com.jnaina.quintet
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         TARGETED_DEVICE_FAMILY: "1,2"
         SWIFT_OPTIMIZATION_LEVEL: "-O"

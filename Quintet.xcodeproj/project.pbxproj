@@ -14,11 +14,13 @@
 		7F15C50192EACC7E66A27C5A /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACCE0BA33FEFF12360C12B7 /* Views.swift */; };
 		8F152A4BCB2DE7727040731B /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28530F7464A6B751F1F7BAE /* Engine.swift */; };
 		A08E391BB3F2CBE66DF7C12B /* QuintetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20F081411245079AFB50A26 /* QuintetApp.swift */; };
+		A9F09D4B9FBA495A3FA562B5 /* guesses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA68BB0DD4C714457D8E36 /* guesses.txt */; };
 		C3F8F681ECE29D23E712B9C4 /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8929982184DD64B7AE0D30A3 /* words.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3FD376407DAD41CA6679C4A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3FEA68BB0DD4C714457D8E36 /* guesses.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = guesses.txt; sourceTree = "<group>"; };
 		599C7ADA336C0C366EBCD4D3 /* Quintet.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Quintet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ACCE0BA33FEFF12360C12B7 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		8929982184DD64B7AE0D30A3 /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
@@ -33,6 +35,7 @@
 		2564C226A1A32800E0095680 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3FEA68BB0DD4C714457D8E36 /* guesses.txt */,
 				8929982184DD64B7AE0D30A3 /* words.txt */,
 			);
 			path = Resources;
@@ -130,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EB237D144F36C9ED9BCBC37 /* Assets.xcassets in Resources */,
+				A9F09D4B9FBA495A3FA562B5 /* guesses.txt in Resources */,
 				C3F8F681ECE29D23E712B9C4 /* words.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +290,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jnaina.galaga88;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jnaina.quintet;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -304,7 +308,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jnaina.galaga88;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jnaina.quintet;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

@@ -8,6 +8,13 @@ enum Words {
         return text.split(whereSeparator: \.isNewline).map { $0.trimmingCharacters(in: .whitespaces).uppercased() }.filter { $0.count == 5 }
     }()
     static let set = Set(list)
+    /// Everything accepted as a guess: the answer list plus ENABLE and Wordle's allowed guesses (guesses.txt).
+    static let valid: Set<String> = {
+        guard let url = Bundle.main.url(forResource: "guesses", withExtension: "txt"),
+              let text = try? String(contentsOf: url, encoding: .utf8) else { return set }
+        let extra = text.split(whereSeparator: \.isNewline).map { $0.trimmingCharacters(in: .whitespaces).uppercased() }.filter { $0.count == 5 }
+        return set.union(extra)
+    }()
 }
 
 struct SavedGame: Codable {
@@ -170,7 +177,7 @@ final class GameModel: ObservableObject {
     func submit() {
         guard status == .playing, !isRevealing else { return }
         guard current.count == 5 else { reject("Not enough letters"); return }
-        guard Words.set.contains(current) else { reject("Not in word list"); return }
+        guard Words.valid.contains(current) else { reject("Not in word list"); return }
         if strict, let msg = strictViolation(guess: current, history: zip(guesses, evals).map { (word: $0, eval: $1) }) { reject(msg); return }
         let word = current
         let ev = evaluate(answer: answer, guess: word)
